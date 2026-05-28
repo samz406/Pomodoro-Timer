@@ -216,22 +216,14 @@ final class TimerViewModel: ObservableObject {
             // Forward elapsed – run until user resets
             progress = 1.0  // ring stays full in forward mode
         case 2:
-            // Infinite loop – restart after each cycle
+            // Infinite loop – completePhase handles state transitions, timer keeps running
             if remainingSeconds > 0 {
                 remainingSeconds -= 1
-                progress = Double(remainingSeconds) / Double(selectedMinutes * 60)
+                let totalSeconds = phase == .focus ? selectedMinutes * 60 : breakMinutes * 60
+                progress = Double(remainingSeconds) / Double(totalSeconds)
             } else {
-                // Complete one cycle, restart
                 completePhase()
-                if phase == .focus {
-                    remainingSeconds = selectedMinutes * 60
-                    progress = 1.0
-                    sessionStart = Date()
-                    currentRecordId = DatabaseManager.shared.insertFocusRecord(
-                        startTime: sessionStart!,
-                        durationMinutes: selectedMinutes
-                    )
-                }
+                // completePhase sets remainingSeconds and phase for next cycle
             }
         default:
             // Classic countdown
@@ -251,13 +243,13 @@ final class TimerViewModel: ObservableObject {
             loadStats()
             sendNotification(title: "专注完成！", body: "休息一下吧，\(breakMinutes) 分钟后继续。")
 
-            if autoBreak {
+            if autoBreak || timerMode == 2 {
+                // Enter break phase, keep timer running
                 phase = .breakTime
                 remainingSeconds = breakMinutes * 60
                 progress = 1.0
-                if timerMode != 2 {
-                    // Keep timer running for break
-                }
+                // In infinite mode, the timer continues ticking
+                // In classic/forward mode with autoBreak, same behavior
             } else {
                 stopTimer()
                 remainingSeconds = selectedMinutes * 60
@@ -266,7 +258,8 @@ final class TimerViewModel: ObservableObject {
 
         case .breakTime:
             sendNotification(title: "休息结束", body: "开始新一轮专注！")
-            if autoSkipBreak {
+            if autoSkipBreak || timerMode == 2 {
+                // Auto-start next focus session
                 phase = .focus
                 remainingSeconds = selectedMinutes * 60
                 progress = 1.0
@@ -275,6 +268,12 @@ final class TimerViewModel: ObservableObject {
                     startTime: sessionStart!,
                     durationMinutes: selectedMinutes
                 )
+                // Timer keeps running in infinite mode
+                if !isRunning {
+                    scheduleTimer()
+                    isRunning = true
+                    isPaused = false
+                }
             } else {
                 stopTimer()
                 phase = .focus

@@ -1,12 +1,13 @@
 import SwiftUI
 import AppKit
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
     @EnvironmentObject var timerVM: TimerViewModel
+    @StateObject private var hotkeyRecorder = HotkeyRecorder()
     @State private var settings = AppSettingsData()
     @State private var showResetAlert = false
     @State private var showExportSuccess = false
-    @State private var isRecordingHotkey = false
     @State private var hotkeyDisplay = "未设置"
 
     var body: some View {
@@ -42,10 +43,16 @@ struct SettingsView: View {
                     HStack {
                         Label("暂停 / 启动计时", systemImage: "command.circle")
                         Spacer()
-                        Button(isRecordingHotkey ? "按下快捷键..." : hotkeyDisplay) {
-                            isRecordingHotkey = true
+                        Button(hotkeyRecorder.isRecording ? "按下快捷键..." : hotkeyDisplay) {
+                            hotkeyRecorder.startRecording { modifiers, keyCode, display in
+                                settings.hotkeyModifiers = modifiers
+                                settings.hotkeyKeyCode = keyCode
+                                hotkeyDisplay = display
+                                saveSettings()
+                                AppDelegate.shared?.setupHotkey(modifiers: modifiers, keyCode: keyCode)
+                            }
                         }
-                        .foregroundColor(isRecordingHotkey ? .accentColor : .primary)
+                        .foregroundColor(hotkeyRecorder.isRecording ? .accentColor : .primary)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .background(Color.primary.opacity(0.06))
@@ -73,15 +80,6 @@ struct SettingsView: View {
                 .padding()
                 .background(Color.primary.opacity(0.04))
                 .cornerRadius(12)
-                .background(
-                    HotkeyRecorderView(isRecording: $isRecordingHotkey) { modifiers, keyCode, display in
-                        settings.hotkeyModifiers = modifiers
-                        settings.hotkeyKeyCode = keyCode
-                        hotkeyDisplay = display
-                        saveSettings()
-                        AppDelegate.shared?.setupHotkey(modifiers: modifiers, keyCode: keyCode)
-                    }
-                )
 
                 Divider()
 
@@ -210,50 +208,46 @@ struct SettingsRow<Content: View>: View {
     }
 }
 
-// MARK: - Hotkey Recorder (NSViewRepresentable)
+// MARK: - Hotkey Recorder
 
-struct HotkeyRecorderView: NSViewRepresentable {
-    @Binding var isRecording: Bool
-    let onRecord: (Int, Int, String) -> Void
+/// Uses NSEvent local monitor to capture the next key combination pressed.
+final class HotkeyRecorder: ObservableObject {
+    @Published var isRecording = false
+    private var monitor: Any?
 
-    func makeNSView(context: Context) -> NSView {
-        let view = KeyCaptureView()
-        view.onKeyCapture = { modifiers, keyCode, display in
-            DispatchQueue.main.async {
-                self.isRecording = false
-                self.onRecord(modifiers, keyCode, display)
+    func startRecording(completion: @escaping (Int, Int, String) -> Void) {
+        isRecording = true
+        monitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { [weak self] event in
+            guard self?.isRecording == true else { return event }
+            // Escape cancels recording
+            if event.keyCode == 53 {
+                self?.stopRecording()
+                completion(0, 0, "未设置")
+                return nil
             }
+            // Require at least one modifier key (not just alphanumeric)
+            let mods = event.modifierFlags.intersection([.command, .option, .control, .shift])
+            guard !mods.isEmpty else { return event }
+
+            let modRaw = Int(event.modifierFlags.rawValue)
+            let keyCode = Int(event.keyCode)
+            let display = HotkeyManager.displayString(
+                modifiers: UInt32(event.modifierFlags.rawValue),
+                keyCode: UInt32(event.keyCode)
+            )
+            self?.stopRecording()
+            completion(modRaw, keyCode, display)
+            return nil
         }
-        view.isRecordingBinding = { self.isRecording }
-        return view
     }
 
-    func updateNSView(_ nsView: NSView, context: Context) {
-        (nsView as? KeyCaptureView)?.isRecordingBinding = { self.isRecording }
-    }
-}
-
-final class KeyCaptureView: NSView {
-    var onKeyCapture: ((Int, Int, String) -> Void)?
-    var isRecordingBinding: (() -> Bool)?
-
-    override var acceptsFirstResponder: Bool { true }
-
-    override func keyDown(with event: NSEvent) {
-        guard isRecordingBinding?() == true else {
-            super.keyDown(with: event)
-            return
+    func stopRecording() {
+        isRecording = false
+        if let monitor = monitor {
+            NSEvent.removeMonitor(monitor)
+            self.monitor = nil
         }
-        guard event.keyCode != 53 else { // Escape cancels
-            onKeyCapture?(0, 0, "未设置")
-            return
-        }
-        let modifiers = Int(event.modifierFlags.rawValue)
-        let keyCode = Int(event.keyCode)
-        let display = HotkeyManager.displayString(
-            modifiers: UInt32(event.modifierFlags.rawValue),
-            keyCode: UInt32(event.keyCode)
-        )
-        onKeyCapture?(modifiers, keyCode, display)
     }
+
+    deinit { stopRecording() }
 }

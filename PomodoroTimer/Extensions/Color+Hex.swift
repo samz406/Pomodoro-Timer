@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 extension Color {
     init?(hex: String) {
