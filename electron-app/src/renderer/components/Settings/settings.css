@@ -1,0 +1,51 @@
+.data-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.hotkey-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-3);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 100px;
+  transition: background 0.15s, color 0.15s;
+}
+.hotkey-btn.recording {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.clear-btn:hover { color: #e05555; }
+
+.export-msg {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #32c864;
+}
+
+.about-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  font-size: 13px;
+}
+.about-row + .about-row { border-top: 1px solid var(--border); }
+
+.about-key {
+  color: var(--text-2);
+}

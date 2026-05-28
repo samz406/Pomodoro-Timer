@@ -1,0 +1,121 @@
+.timer-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px 48px;
+  height: 100%;
+}
+
+/* ── Ring ──────────────────────────────── */
+.timer-ring {
+  display: block;
+}
+
+.timer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ── Controls ──────────────────────────── */
+.timer-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-round {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.15s;
+  color: #fff;
+}
+.btn-round:hover { opacity: 0.85; transform: scale(1.05); }
+.btn-round:active { transform: scale(0.96); }
+
+.btn-round-primary {
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.btn-round-secondary {
+  background: var(--bg-3);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+
+/* ── Presets ──────────────────────────── */
+.preset-row {
+  display: flex;
+  gap: 10px;
+}
+
+.preset-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.preset-btn:hover:not(:disabled) {
+  border-color: var(--text-2);
+  color: var(--text);
+}
+.preset-btn.active {
+  font-weight: 600;
+}
+.preset-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Bento Grid ────────────────────────── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 220px;
+}
+
+.bento-card {
+  background: var(--bg-2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bento-label {
+  font-size: 11.5px;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.bento-value {
+  font-size: 26px;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.bento-unit {
+  font-size: 13px;
+  color: var(--text-2);
+  font-weight: 400;
+}
