@@ -6,6 +6,19 @@ interface Props {
   accentColor: string;
 }
 
+function formatDate(ts: number): string {
+  const d = new Date(ts);
+  return d.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+}
+
+function dayLabel(dateStr: string, showMonthly: boolean): string {
+  const d = new Date(dateStr + 'T00:00:00');
+  if (showMonthly) {
+    return `${d.getMonth() + 1}/${d.getDate()}`;
+  }
+  return ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
+}
+
 export default function RecordsPage({ accentColor }: Props) {
   const [records, setRecords] = useState<FocusRecord[]>([]);
   const [weekly, setWeekly] = useState<ChartPoint[]>([]);
@@ -29,19 +42,6 @@ export default function RecordsPage({ accentColor }: Props) {
   const chartData = showMonthly ? monthly : weekly;
   const maxVal = Math.max(...chartData.map(d => d.minutes), 1);
 
-  const formatDate = (ts: number) => {
-    const d = new Date(ts);
-    return d.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
-  };
-
-  const dayLabel = (dateStr: string) => {
-    const d = new Date(dateStr + 'T00:00:00');
-    if (showMonthly) {
-      return `${d.getMonth() + 1}/${d.getDate()}`;
-    }
-    return ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
-  };
-
   const confirmDelete = async () => {
     if (!deleteTarget) return;
     await window.electronAPI.records.delete(deleteTarget.id);
@@ -50,7 +50,7 @@ export default function RecordsPage({ accentColor }: Props) {
   };
 
   // Interruption heatmap by hour
-  const hourCounts = Array(24).fill(0);
+  const hourCounts = Array(24).fill(0) as number[];
   for (const r of records) {
     if (r.status === 'INTERRUPTED') {
       const hour = new Date(r.startTime).getHours();
@@ -84,7 +84,7 @@ export default function RecordsPage({ accentColor }: Props) {
                       background: accentColor,
                     }}
                   />
-                  <span className="bar-label">{dayLabel(d.date)}</span>
+                  <span className="bar-label">{dayLabel(d.date, showMonthly)}</span>
                 </div>
               ))}
             </div>
@@ -205,3 +205,4 @@ function TrashIcon() {
     </svg>
   );
 }
+

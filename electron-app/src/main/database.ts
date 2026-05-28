@@ -168,7 +168,7 @@ export class DatabaseManager {
 
   getAllRecords(): FocusRecord[] {
     return this.db
-      .prepare('SELECT * FROM focus_records ORDER BY start_time DESC')
+      .prepare('SELECT id, start_time as startTime, end_time as endTime, duration_minutes as durationMinutes, status FROM focus_records ORDER BY start_time DESC')
       .all() as FocusRecord[];
   }
 

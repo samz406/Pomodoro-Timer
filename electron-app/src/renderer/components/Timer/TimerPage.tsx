@@ -18,6 +18,13 @@ const PRESETS: [string, number][] = [
   ['45 分钟', 45],
 ];
 
+function totalFocusString(totalMinutes: number): string {
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  if (h > 0) return `${h}h ${m}m`;
+  return `${m}m`;
+}
+
 export default function TimerPage({ timer }: Props) {
   const {
     settings,
@@ -75,13 +82,6 @@ export default function TimerPage({ timer }: Props) {
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseup', onUp);
   }, [isRunning, isPaused, setMinutesFromAngle, angleFromEvent]);
-
-  const totalFocusString = () => {
-    const h = Math.floor(stats.totalMinutes / 60);
-    const m = stats.totalMinutes % 60;
-    if (h > 0) return `${h}h ${m}m`;
-    return `${m}m`;
-  };
 
   return (
     <div className="timer-page">
@@ -202,7 +202,7 @@ export default function TimerPage({ timer }: Props) {
       {/* Right: bento stats */}
       <div className="bento-grid">
         <BentoCard label="今日专注" value={String(stats.todayCount)} unit="个" accent={accent} />
-        <BentoCard label="累计时长" value={totalFocusString()} unit="" accent={accent} />
+        <BentoCard label="累计时长" value={totalFocusString(stats.totalMinutes)} unit="" accent={accent} />
         <BentoCard label="连续打卡" value={String(stats.streakDays)} unit="天" accent={accent} />
         <BentoCard label="当前模式" value={modeLabel(settings.timerMode)} unit="" accent={accent} />
       </div>

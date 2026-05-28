@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Notification, dialog, globalShortcut, shell } from 'electron';
+import { app, BrowserWindow, Notification, dialog, globalShortcut, shell, ipcMain } from 'electron';
 import path from 'path';
 import { DatabaseManager } from './database';
 import { registerIpcHandlers } from './ipc';
