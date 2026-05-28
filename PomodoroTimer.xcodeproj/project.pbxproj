@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB00000200000000AAAABBBB /* PomodoroTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000200000000AAAABBBB /* PomodoroTimerApp.swift */; };
+		DB00000300000000AAAABBBB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000300000000AAAABBBB /* ContentView.swift */; };
+		DB00000400000000AAAABBBB /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000400000000AAAABBBB /* TimerView.swift */; };
+		DB00000500000000AAAABBBB /* CountdownSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000500000000AAAABBBB /* CountdownSettingsView.swift */; };
+		DB00000600000000AAAABBBB /* RecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000600000000AAAABBBB /* RecordsView.swift */; };
+		DB00000700000000AAAABBBB /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000700000000AAAABBBB /* ThemeView.swift */; };
+		DB00000800000000AAAABBBB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000800000000AAAABBBB /* SettingsView.swift */; };
+		DB00000900000000AAAABBBB /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000900000000AAAABBBB /* DatabaseManager.swift */; };
+		DB00000A00000000AAAABBBB /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000A00000000AAAABBBB /* TimerViewModel.swift */; };
+		DB00000B00000000AAAABBBB /* RecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000B00000000AAAABBBB /* RecordsViewModel.swift */; };
+		DB00000C00000000AAAABBBB /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000C00000000AAAABBBB /* Color+Hex.swift */; };
+		DB00000D00000000AAAABBBB /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000D00000000AAAABBBB /* HotkeyManager.swift */; };
+		DB00000E00000000AAAABBBB /* LaunchAtLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA00000E00000000AAAABBBB /* LaunchAtLoginHelper.swift */; };
+		DB00000F00000000AAAABBBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA00000F00000000AAAABBBB /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DA00000100000000AAAABBBB /* PomodoroTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PomodoroTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA00000200000000AAAABBBB /* PomodoroTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerApp.swift; sourceTree = "<group>"; };
+		DA00000300000000AAAABBBB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DA00000400000000AAAABBBB /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		DA00000500000000AAAABBBB /* CountdownSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownSettingsView.swift; sourceTree = "<group>"; };
+		DA00000600000000AAAABBBB /* RecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsView.swift; sourceTree = "<group>"; };
+		DA00000700000000AAAABBBB /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
+		DA00000800000000AAAABBBB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DA00000900000000AAAABBBB /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		DA00000A00000000AAAABBBB /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		DA00000B00000000AAAABBBB /* RecordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewModel.swift; sourceTree = "<group>"; };
+		DA00000C00000000AAAABBBB /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		DA00000D00000000AAAABBBB /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
+		DA00000E00000000AAAABBBB /* LaunchAtLoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginHelper.swift; sourceTree = "<group>"; };
+		DA00000F00000000AAAABBBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DA00001000000000AAAABBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA00001100000000AAAABBBB /* PomodoroTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PomodoroTimer.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD00000300000000AAAABBBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC00000100000000AAAABBBB /* PomodoroTimer (workspace root) */ = {
+			isa = PBXGroup;
+			children = (
+				DC00000300000000AAAABBBB /* PomodoroTimer */,
+				DC00000200000000AAAABBBB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DC00000200000000AAAABBBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000100000000AAAABBBB /* PomodoroTimer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC00000300000000AAAABBBB /* PomodoroTimer */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000200000000AAAABBBB /* PomodoroTimerApp.swift */,
+				DA00000300000000AAAABBBB /* ContentView.swift */,
+				DA00001000000000AAAABBBB /* Info.plist */,
+				DA00001100000000AAAABBBB /* PomodoroTimer.entitlements */,
+				DA00000F00000000AAAABBBB /* Assets.xcassets */,
+				DC00000400000000AAAABBBB /* Views */,
+				DC00000500000000AAAABBBB /* Models */,
+				DC00000600000000AAAABBBB /* ViewModels */,
+				DC00000700000000AAAABBBB /* Extensions */,
+				DC00000800000000AAAABBBB /* Helpers */,
+			);
+			path = PomodoroTimer;
+			sourceTree = "<group>";
+		};
+		DC00000400000000AAAABBBB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000400000000AAAABBBB /* TimerView.swift */,
+				DA00000500000000AAAABBBB /* CountdownSettingsView.swift */,
+				DA00000600000000AAAABBBB /* RecordsView.swift */,
+				DA00000700000000AAAABBBB /* ThemeView.swift */,
+				DA00000800000000AAAABBBB /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC00000500000000AAAABBBB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000900000000AAAABBBB /* DatabaseManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DC00000600000000AAAABBBB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000A00000000AAAABBBB /* TimerViewModel.swift */,
+				DA00000B00000000AAAABBBB /* RecordsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC00000700000000AAAABBBB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000C00000000AAAABBBB /* Color+Hex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DC00000800000000AAAABBBB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DA00000D00000000AAAABBBB /* HotkeyManager.swift */,
+				DA00000E00000000AAAABBBB /* LaunchAtLoginHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE00000100000000AAAABBBB /* PomodoroTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E000000200000000AAAABBBB /* Build configuration list for PBXNativeTarget "PomodoroTimer" */;
+			buildPhases = (
+				DD00000100000000AAAABBBB /* Sources */,
+				DD00000300000000AAAABBBB /* Frameworks */,
+				DD00000200000000AAAABBBB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PomodoroTimer;
+			productName = PomodoroTimer;
+			productReference = DA00000100000000AAAABBBB /* PomodoroTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF00000100000000AAAABBBB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					DE00000100000000AAAABBBB = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = E000000100000000AAAABBBB /* Build configuration list for PBXProject "PomodoroTimer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = zh-Hans;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = DC00000100000000AAAABBBB;
+			productRefGroup = DC00000200000000AAAABBBB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE00000100000000AAAABBBB /* PomodoroTimer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD00000200000000AAAABBBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB00000F00000000AAAABBBB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD00000100000000AAAABBBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB00000200000000AAAABBBB /* PomodoroTimerApp.swift in Sources */,
+				DB00000300000000AAAABBBB /* ContentView.swift in Sources */,
+				DB00000400000000AAAABBBB /* TimerView.swift in Sources */,
+				DB00000500000000AAAABBBB /* CountdownSettingsView.swift in Sources */,
+				DB00000600000000AAAABBBB /* RecordsView.swift in Sources */,
+				DB00000700000000AAAABBBB /* ThemeView.swift in Sources */,
+				DB00000800000000AAAABBBB /* SettingsView.swift in Sources */,
+				DB00000900000000AAAABBBB /* DatabaseManager.swift in Sources */,
+				DB00000A00000000AAAABBBB /* TimerViewModel.swift in Sources */,
+				DB00000B00000000AAAABBBB /* RecordsViewModel.swift in Sources */,
+				DB00000C00000000AAAABBBB /* Color+Hex.swift in Sources */,
+				DB00000D00000000AAAABBBB /* HotkeyManager.swift in Sources */,
+				DB00000E00000000AAAABBBB /* LaunchAtLoginHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E000000300000000AAAABBBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E000000400000000AAAABBBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		E000000500000000AAAABBBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PomodoroTimer/PomodoroTimer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PomodoroTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samz406.PomodoroTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E000000600000000AAAABBBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PomodoroTimer/PomodoroTimer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PomodoroTimer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.samz406.PomodoroTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E000000100000000AAAABBBB /* Build configuration list for PBXProject "PomodoroTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E000000300000000AAAABBBB /* Debug */,
+				E000000400000000AAAABBBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E000000200000000AAAABBBB /* Build configuration list for PBXNativeTarget "PomodoroTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E000000500000000AAAABBBB /* Debug */,
+				E000000600000000AAAABBBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = DF00000100000000AAAABBBB /* Project object */;
+}
