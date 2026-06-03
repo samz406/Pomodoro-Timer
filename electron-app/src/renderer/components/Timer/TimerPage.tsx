@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useEffect, useState } from 'react';
 import { useTimer } from '../../hooks/useTimer';
 import './timer.css';
 
@@ -42,11 +42,26 @@ export default function TimerPage({ timer }: Props) {
   } = timer;
 
   const accent = settings.digitColorHex;
+  const [customMinutes, setCustomMinutes] = useState(String(selectedMinutes));
   const svgRef = useRef<SVGSVGElement>(null);
   const dragging = useRef(false);
 
   // Dash offset for progress ring
   const dashOffset = CIRCUMFERENCE * (1 - progress);
+
+  useEffect(() => {
+    if (!isRunning && !isPaused) {
+      setCustomMinutes(String(selectedMinutes));
+    }
+  }, [isRunning, isPaused, selectedMinutes]);
+
+  const applyCustomMinutes = useCallback(() => {
+    const parsed = Number(customMinutes);
+    if (!Number.isFinite(parsed)) return;
+    const minutes = Math.max(1, Math.min(90, Math.round(parsed)));
+    setCustomMinutes(String(minutes));
+    setSelectedMinutes(minutes);
+  }, [customMinutes, setSelectedMinutes]);
 
   // Thumb position
   const thumbAngle = -Math.PI / 2 + progress * 2 * Math.PI;
@@ -196,6 +211,32 @@ export default function TimerPage({ timer }: Props) {
               {label}
             </button>
           ))}
+          <div
+            className={`custom-preset ${!PRESETS.some(([, min]) => min === selectedMinutes) ? 'active' : ''}`}
+            style={!PRESETS.some(([, min]) => min === selectedMinutes) ? { borderColor: accent, color: accent } : {}}
+          >
+            <input
+              className="custom-preset-input"
+              type="number"
+              min={1}
+              max={90}
+              value={customMinutes}
+              onChange={e => setCustomMinutes(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === 'Enter') applyCustomMinutes();
+              }}
+              disabled={isRunning || isPaused}
+              aria-label="自定义倒计时分钟数"
+            />
+            <span>分钟</span>
+            <button
+              className="custom-preset-apply"
+              onClick={applyCustomMinutes}
+              disabled={isRunning || isPaused}
+            >
+              自定义
+            </button>
+          </div>
         </div>
       </div>
 

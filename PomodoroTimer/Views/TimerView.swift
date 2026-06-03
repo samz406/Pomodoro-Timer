@@ -210,6 +210,11 @@ struct TimerSettingsPanel: View {
 
 struct TimerView: View {
     @EnvironmentObject var vm: TimerViewModel
+    @State private var customMinutesText: String = "25"
+
+    private var presetMinutes: [Int] {
+        vm.defaultPresets.map { $0.1 }
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -221,6 +226,19 @@ struct TimerView: View {
                         PresetButton(minutes: min, isSelected: vm.selectedMinutes == min && !vm.isRunning && !vm.isPaused) {
                             vm.selectPreset(id: id, minutes: min)
                         }
+                    }
+
+                    CustomPresetControl(
+                        minutesText: $customMinutesText,
+                        isSelected: !presetMinutes.contains(vm.selectedMinutes) && !vm.isRunning && !vm.isPaused,
+                        isDisabled: vm.isRunning || vm.isPaused,
+                        action: applyCustomMinutes
+                    )
+                }
+                .onAppear { customMinutesText = "\(vm.selectedMinutes)" }
+                .onChange(of: vm.selectedMinutes) { minutes in
+                    if !vm.isRunning && !vm.isPaused {
+                        customMinutesText = "\(minutes)"
                     }
                 }
 
@@ -297,6 +315,14 @@ struct TimerView: View {
                 .environmentObject(vm)
         }
     }
+
+    private func applyCustomMinutes() {
+        guard !vm.isRunning && !vm.isPaused else { return }
+        guard let value = Int(customMinutesText.trimmingCharacters(in: .whitespacesAndNewlines)) else { return }
+        let minutes = min(90, max(1, value))
+        customMinutesText = "\(minutes)"
+        vm.setSelectedMinutes(minutes)
+    }
 }
 
 // MARK: - Preset Button
@@ -317,5 +343,53 @@ struct PresetButton: View {
                 .cornerRadius(20)
         }
         .buttonStyle(.plain)
+    }
+}
+
+struct CustomPresetControl: View {
+    @Binding var minutesText: String
+    let isSelected: Bool
+    let isDisabled: Bool
+    let action: () -> Void
+
+    var body: some View {
+        HStack(spacing: 6) {
+            TextField("25", text: $minutesText)
+                .font(.system(size: 13, weight: .medium))
+                .multilineTextAlignment(.trailing)
+                .frame(width: 36)
+                .textFieldStyle(.plain)
+                .disabled(isDisabled)
+                .onSubmit(action)
+                .onChange(of: minutesText) { value in
+                    let filtered = value.filter { $0.isNumber }
+                    if filtered != value {
+                        minutesText = filtered
+                    }
+                }
+
+            Text("分钟")
+                .font(.system(size: 13, weight: .medium))
+
+            Button("自定义", action: action)
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(isSelected ? .white : .primary)
+                .padding(.horizontal, 9)
+                .padding(.vertical, 4)
+                .background(isSelected ? Color.accentColor : Color.primary.opacity(0.08))
+                .cornerRadius(14)
+                .disabled(isDisabled)
+                .buttonStyle(.plain)
+        }
+        .foregroundColor(isSelected ? .accentColor : .primary)
+        .padding(.leading, 10)
+        .padding(.trailing, 5)
+        .padding(.vertical, 4)
+        .background(Color.primary.opacity(0.08))
+        .overlay(
+            Capsule().stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
+        )
+        .clipShape(Capsule())
+        .opacity(isDisabled ? 0.45 : 1)
     }
 }
