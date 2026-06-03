@@ -56,7 +56,10 @@
 /* ── Presets ──────────────────────────── */
 .preset-row {
   display: flex;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .preset-btn {
@@ -77,6 +80,58 @@
   font-weight: 600;
 }
 .preset-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.custom-preset {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 10px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-size: 13px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.custom-preset.active {
+  font-weight: 600;
+}
+.custom-preset:focus-within {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.custom-preset-input {
+  width: 42px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: right;
+  outline: none;
+}
+.custom-preset-input::-webkit-outer-spin-button,
+.custom-preset-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.custom-preset-apply {
+  padding: 4px 9px;
+  border: none;
+  border-radius: 14px;
+  background: var(--bg-3);
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.custom-preset-apply:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}
+.custom-preset-input:disabled,
+.custom-preset-apply:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }

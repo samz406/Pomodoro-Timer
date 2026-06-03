@@ -57,12 +57,18 @@ final class TimerViewModel: ObservableObject {
     // MARK: - Preset Selection
 
     func selectPreset(id: Int64, minutes: Int) {
-        guard !isRunning else { return }
-        selectedMinutes = minutes
-        remainingSeconds = minutes * 60
+        guard !isRunning && !isPaused else { return }
+        setSelectedMinutes(minutes)
+        DatabaseManager.shared.updatePresetLastUsed(presetId: id)
+    }
+
+    func setSelectedMinutes(_ minutes: Int) {
+        guard !isRunning && !isPaused else { return }
+        let clampedMinutes = max(1, min(90, minutes))
+        selectedMinutes = clampedMinutes
+        remainingSeconds = clampedMinutes * 60
         progress = 1.0
         phase = .focus
-        DatabaseManager.shared.updatePresetLastUsed(presetId: id)
     }
 
     // MARK: - Timer Control
